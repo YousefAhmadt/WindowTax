@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_report_my_model" model="ir.actions.report">
+        <field name="name">INVOICE</field>
+        <field name="model">user.qut</field>  <!-- Adjust the model name as necessary -->
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">WindowTax.report_my_model</field>  <!-- Adjust based on your module -->
+        <field name="report_file">WindowTax.report_my_model</field>  <!-- Adjust based on your module -->
+    </record>
+
+    <template id="report_my_model">
+        <t t-call="web.basic_layout">
+            <t t-foreach="docs" t-as="o">
+                <style>
+                    .h1-title{color: #2c3b8e;}
+                    .p-title{color: #000;}
+                    .span-date-today{color: #56e379;}
+                    .h4-title{color: #2c3b8e;}
+                    .logo-img{width: 250px;height: 250px;}
+                    .center-element{text-align: center;}
+                    .sand-box{margin: 4% 0%;}
+
+                    table {
+                    font-family: Arial, Helvetica, sans-serif;
+                    border-collapse: collapse;
+                    width: 100%;
+                    }
+                    table td, table th {
+                    border: 1px solid #ddd;
+                    padding: 8px;
+                    }
+                    table th {
+                    padding-top: 12px;
+                    padding-bottom: 12px;
+                    text-align: left;
+                    background-color: #5995ab;
+                    color: black;
+                    }
+                </style>
+                <div>
+                    <!-- Header -->
+                    <div>
+                        <div class="container">
+                            <div class="left-div" style="float: left; width: 70%;">
+                                <h1 class="h1-title">|| [ WINDOW TAX]</h1>
+                                <p class="p-title">ويندو تاكس للخدمات</p>
+                                <h4 class="h4-title">||
+                                    <span class="span-date-today"
+                                          t-esc="context_timestamp(datetime.datetime.now()).strftime('%Y-%m-%d')"/>
+                                </h4>
+                            </div>
+                            <div class="right-div" style="float: right; width: 30%;">
+                                <img class="logo-img" src="\WindowTax\static\src\image\logo.jpg" alt="Logo"/>
+                            </div>
+                        </div>
+                    </div>
+                    <t t-if="o.question == True">
+                        <h4 class="h4-title center-element">QUESTIONS</h4>
+                    </t>
+                    <t t-else="">
+                        <h4 class="h4-title center-element">INVOICE</h4>
+                    </t>
+
+                    <!-- Tables -->
+                    <table>
+                        <tr>
+                            <th>
+                                <strong>To:</strong>
+                            </th>
+                            <td>
+                                <span t-field="o.name"/>
+                            </td>
+                            <th>
+                                <strong>Number:</strong>
+                            </th>
+                            <td>
+                                <span t-field="o.num"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                <strong>Attn:</strong>
+                            </th>
+                            <td>
+                                <span t-field="o.attn"/>
+                            </td>
+                            <th>
+                                <strong>Date:</strong>
+                            </th>
+                            <td>
+                                <span t-field="o.Date"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                <strong>Email:</strong>
+                            </th>
+                            <td>
+                                <span t-field="o.email"/>
+                            </td>
+                            <th>
+                                <strong>Payment Terms:</strong>
+                            </th>
+                            <td>
+                                <span t-field="o.pyment"/>
+                            </td>
+                        </tr>
+                    </table>
+                    <div class="sand-box"/>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Qty.</th>
+                                <th>Description</th>
+                                <th>Line Total</th>
+                                <th>Qty</th>
+                                <th>Total Price</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- عرض سطور الفاتورة -->
+                            <t t-foreach="o.qut_line_ids" t-as="line">
+                                <tr>
+                                    <!-- الكمية -->
+                                    <td>
+                                        <span t-field="line.qty"/>
+                                    </td>
+                                    <!-- الوصف -->
+                                    <td>
+                                        <span t-field="line.description"/>
+                                    </td>
+                                    <!-- إجمالي السطر -->
+                                    <td>
+                                        <span t-field="line.line_total"/>
+                                    </td>
+                                    <!-- السعر الإجمالي -->
+                                    <td>
+                                        <span t-field="line.qty"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="line.total_price"/>
+                                    </td>
+                                </tr>
+                            </t>
+                        </tbody>
+                        <tfoot>
+                            <!-- إجمالي الفاتورة -->
+                            <tr>
+                                <td colspan="4">
+                                    <strong>Total:</strong>
+                                </td>
+                                <td>
+                                    <span t-field="o.total"/>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                    <div>
+                        <!-- حالة الدفع -->
+                        <p>Paid</p>
+                    </div>
+
+                    <!-- Footer -->
+                    <div>
+                        <div>
+                            <div class="left-div" style="float: left; width: 70%;">
+                                <img class="logo-img" src="\WindowTax\static\src\image\logo.jpg" alt="Logo"/>
+                            </div>
+                            <div class="right-div" style="float: right; width: 30%;margin: 7% 0% 0% 0%;">
+                                <p>WINDOW TAX SERVICES</p>
+                                <p>محمد أحمد - المدير التنفيذي</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </t>
+    </template>
+</odoo>

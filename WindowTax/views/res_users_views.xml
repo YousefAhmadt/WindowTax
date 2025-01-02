@@ -1,0 +1,74 @@
+<!--<?xml version="1.0" encoding="utf-8"?>-->
+<odoo>
+    <record id="view_form_my_custom_model" model="ir.ui.view">
+        <field name="name">my.custom.model.form</field>
+        <field name="model">user.qut</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="partner_id"/>
+                            <field name="question"/>
+<!--                            question-->
+                            <field name="num"/>
+                        </group>
+                        <group>
+                            <field name="email"/>
+                            <field name="attn"/>
+                        </group>
+                        <group>
+                            <field name="Date"/>
+                            <field name="pyment"/>
+                        </group>
+                        <notebook>
+                            <page string="Qty" name="lines">
+                                <field name="qut_line_ids">
+                            <tree editable="top">
+                                <field name="description"/>
+                                <field name="line_total"/>
+                                <field name="qty"/>
+                                <field name="total_price"/>
+
+
+                            </tree>
+                        </field>
+                            </page>
+                        </notebook>
+
+                        <group>
+                            <field name="total" readonly="1"/>
+                            <field name="paid"/>
+                        </group>
+
+<!--               <footer>-->
+                        <button name="%(action_report_my_model)d" type="action" string="Print" class="btn-primary"/>
+<!--                    </footer>-->
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_tree_my_custom_model" model="ir.ui.view">
+        <field name="name">my.custom.model.tree</field>
+        <field name="model">user.qut</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="num"/>
+                <field name="email"/>
+                <field name="total"/>
+                <field name="paid"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_my_custom_model" model="ir.actions.act_window">
+        <field name="name">INVOICE</field>
+        <field name="res_model">user.qut</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_my_custom_model" name="INVOICE" action="action_my_custom_model"/>
+</odoo>

@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_user_qut,access_user_qut,model_user_qut,,1,1,1,1
+access_qut_line,access_qut_line,model_qut_line,,1,1,1,1
