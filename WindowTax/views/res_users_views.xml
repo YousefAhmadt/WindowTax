@@ -71,4 +71,21 @@
     </record>
 
     <menuitem id="menu_my_custom_model" name="INVOICE" action="action_my_custom_model"/>
+
+
+
+
+    <record id="view_users_form_inherit_change_password" model="ir.ui.view">
+    <field name="name">Change Password Button</field>
+    <field name="model">res.users</field>
+    <field name="inherit_id" ref="base.view_users_form"/>
+    <field name="arch" type="xml">
+        <xpath expr="//header" position="inside">
+            <button name="action_change_password"
+                    string="Change Password"
+                    type="object"
+                    class="btn-primary"/>
+        </xpath>
+    </field>
+</record>
 </odoo>

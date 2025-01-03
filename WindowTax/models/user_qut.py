@@ -37,3 +37,17 @@ class QutLine(models.Model):
     qty = fields.Float(string='Qty')
     total_price = fields.Float(string='Total Pprice')
     qut_id = fields.Many2one('user.qut')
+
+
+class ResUsers(models.Model):
+    _inherit = 'res.users'
+
+
+    def action_change_password(self):
+        return {
+            'type': 'ir.actions.act_window',
+            'res_model': 'change.password.wizard',
+            'view_mode': 'form',
+            'target': 'new',
+        }
+
