@@ -6,8 +6,9 @@
     'auto_install': False,
     'data': [
         'security/ir.model.access.csv',
-        'views/res_users_views.xml',  # Uncomment if needed# Uncomment if needed
         'report/templates.xml',
+        'views/res_users_views.xml',  # Uncomment if needed# Uncomment if needed
+
     ],
     'assets': {
         'web.assets_tests': [

@@ -1,12 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <record id="action_report_my_model" model="ir.actions.report">
-        <field name="name">INVOICE</field>
-        <field name="model">user.qut</field>  <!-- Adjust the model name as necessary -->
-        <field name="report_type">qweb-pdf</field>
-        <field name="report_name">WindowTax.report_my_model</field>  <!-- Adjust based on your module -->
-        <field name="report_file">WindowTax.report_my_model</field>  <!-- Adjust based on your module -->
-    </record>
+<record id="action_report_my_model" model="ir.actions.report">
+    <!-- اسم التقرير المراد عرضه -->
+    <field name="name">INVOICE</field>
+
+    <!-- يجب أن يتطابق مع اسم النموذج الموجود في الكود Python -->
+    <field name="model">user.qut</field>
+
+    <!-- نوع التقرير (PDF أو HTML) -->
+    <field name="report_type">qweb-pdf</field>
+
+    <!-- اسم القالب QWeb المستخدم للتقرير -->
+    <field name="report_name">WindowTax.report_my_model</field>
+
+    <!-- ملف التقرير، إذا كان مختلفًا عن report_name -->
+    <field name="report_file">WindowTax.report_my_model</field>
+</record>
+
 
     <template id="report_my_model">
         <t t-call="web.basic_layout">
